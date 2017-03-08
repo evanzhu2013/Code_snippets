@@ -14,12 +14,12 @@ source deactivate # 激活主环境
 conda update # 更新软件模块
 conda update --all # 更新软件模块
 conda update conda # 更新conda
-```w
+```
 
 ## 特殊软件包的安装
 
 ```
-conda install scikit-learn pandas jupyter notebook ipyparallel openpyxl  matplotlib seaborn basemap sympy 
+conda install scikit-learn pandas jupyter notebook ipyparallel openpyxl  matplotlib seaborn basemap sympy
 pip install statsmodels==0.8.0rc1 # 安装 statsmodels
 
 ```
