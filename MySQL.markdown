@@ -1,6 +1,9 @@
 ### MySQL安装
 
 ```
+# 安装MySQL
+brew instll mysql
+
 # 卸载MySQL
 brew uninstall --force mysql
 ```
