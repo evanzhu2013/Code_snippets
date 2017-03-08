@@ -19,6 +19,14 @@ conda update conda # 更新conda
 ## 特殊软件包的安装
 
 ```
+conda install scikit-learn pandas jupyter notebook ipyparallel openpyxl  matplotlib seaborn basemap sympy 
 pip install statsmodels==0.8.0rc1 # 安装 statsmodels
 
+```
+## 不显示Python中的warnings
+
+```
+# remove warnings
+import warnings
+warnings.filterwarnings('ignore')
 ```

@@ -6,6 +6,9 @@ brew instll mysql
 
 # 卸载MySQL
 brew uninstall --force mysql
+
+# MySQL安装无法建立link的问题
+sudo chown -R $(whoami) /usr/local/lib/
 ```
 
 ### 启动MySQL服务

@@ -1,8 +1,20 @@
+
+
 ### 设置支持Retina
 
 ```
+import matplotlib.pyplot as plt
+%matplotlib inline
 %config InlineBackend.figure_format = 'retina'
 ```
+
+### 设置matplotlib主题
+
+```
+import matplotlib as mpl
+mpl.style.use('ggplot')
+```
+
 ### 设置支持中文
 
 ```
@@ -20,4 +32,10 @@ plt.plot(x,np.sin(x))
 plt.plot(x,np.cos(x))
 plt.xlabel('X坐标')
 plt.ylabel('y坐标')
+```
+### Pandas显示设置
+
+```
+pd.options.display.max_rows = 100
+pd.options.display.max_columns = 100
 ```
