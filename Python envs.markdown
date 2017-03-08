@@ -14,7 +14,7 @@ source deactivate # 激活主环境
 conda update # 更新软件模块
 conda update --all # 更新软件模块
 conda update conda # 更新conda
-```
+```w
 
 ## 特殊软件包的安装
 
