@@ -4,6 +4,7 @@
 
 ```
 rm -rf miniconda3/ .conda/ .continuum/ .ipython/ .jupyter/
+conda remove -n snake --all # 删除环境
 ```
 
 ### miniconda安装
@@ -31,7 +32,10 @@ ipcluster nbextension disable
 [编译XGBoost](https://github.com/dmlc/xgboost/blob/master/doc/build.md#building-on-osx)
 
 安装XGBoost
+
 ```
+git clone --recursive https://github.com/dmlc/xgboost
+cd xgboost; cp make/config.mk ./config.mk; make -j4
 cd python-package; sudo python setup.py install
 ```
 
@@ -40,7 +44,9 @@ cd python-package; sudo python setup.py install
 ```
 conda create --name snake python=2
 source activate snake
-conda install scikit-learn matplotlib pandas seaborn
+conda install scikit-learn matplotlib pandas seaborn jupyter notebook
+pip install ipyparallel
+ipcluster nbextension enable # Restart
 source deactivate snake
 ```
 
@@ -52,8 +58,9 @@ Step1 : 查找matplotlib字体存放目录
 import matplotlib as mpl
 mpl.matplotlib_fname() # 查找路径
 ```
-Step 2 : 将中文字体(SimHei,SimSun)复制入matplotlib字体文件夹下
+font.family和font.sans-serif两行前的#，并在font.sans-serif后添加中文字体SimHei, SimSun
 
+Step 2 : 将中文字体(SimHei,SimSun)复制入matplotlib字体文件夹下
 Step 3: 进入～／.matplotlib 文件夹中删除fontList.py3k.cache文件
 Step 4: 重启 Python
 
@@ -78,5 +85,8 @@ plt.ylabel('y坐标')
 [参考链接](https://www.zhihu.com/question/25404709)
 
 ### 深度学习包安装
-
-pip install Theano keras tensorflow
+```
+conda create --name DL python=3
+conda install pandas scikit-learn matplotlib seaborn
+pip install keras Theano tensorflow
+```
