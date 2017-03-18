@@ -1,5 +1,11 @@
 ## Python 环境安装
 
+### 卸载minconda
+
+```
+rm -rf miniconda3/ .conda/ .continuum/ .ipython/ .jupyter/
+```
+
 ### miniconda安装
 
 下载 [miniconda](https://conda.io/miniconda.html)
@@ -7,8 +13,17 @@
 ### Package模块安装
 
 ```
-conda install scikit-learn, pandas,matplotlib, HDF5, h5py, seaborn
-pip install imblearn graphviz arrow neupy fbprophet minepy minepy Pillow statsmodels==0.8.0rc1
+conda install scikit-learn pandas matplotlib HDF5 h5py seaborn jupyter notebook
+pip install imblearn graphviz arrow neupy minepy Pillow statsmodels==0.8.0rc1 pystan ipyparallel
+pip install fbprophet
+```
+
+### ipyparallel
+
+```
+pip install ipyparallel
+ipcluster nbextension enable # Restart
+ipcluster nbextension disable
 ```
 
 ### XGBoost安装
