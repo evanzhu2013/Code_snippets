@@ -7,3 +7,6 @@
 ## [正则表达式](https://github.com/evanzhu2013/Code_snippets/blob/master/正则表达式.markdown)
 ## [Homebrew使用](https://github.com/evanzhu2013/Code_snippets/blob/master/Homebrew.markdown)
 ## [Macbook quicklook安装](https://github.com/evanzhu2013/Code_snippets/blob/master/Quicklook.markdown)
+
+## Python环境安装
+[Python环境安装](https://github.com/evanzhu2013/Code_snippets/blob/master/Jupyter%20notebook环境配置.markdown)
