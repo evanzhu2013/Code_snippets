@@ -14,7 +14,7 @@ conda remove -n snake --all # 删除环境
 ### Package模块安装
 
 ```
-conda install scikit-learn pandas matplotlib HDF5 h5py seaborn jupyter notebook
+conda install scikit-learn pandas matplotlib HDF5 h5py seaborn jupyter notebook xlrd openpyxl
 pip install imblearn graphviz arrow neupy minepy Pillow statsmodels==0.8.0rc1 pystan ipyparallel
 pip install fbprophet
 ```
@@ -89,4 +89,18 @@ plt.ylabel('y坐标')
 conda create --name DL python=3
 conda install pandas scikit-learn matplotlib seaborn
 pip install keras Theano tensorflow
+```
+
+### 测试
+
+````
+import pandas as pd
+import matplotlib.pyplot as plt
+from statsmodels.tsa.seasonal import seasonal_decompose
+import numpy as np
+import seaborn as sns
+from neupy.algorithms import GRNN as grnn
+import xgboost
+import statsmodels.api as sm
+from statsmodels.tsa.stattools import acf, pacf
 ```
