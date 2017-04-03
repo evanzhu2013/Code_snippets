@@ -3,8 +3,14 @@
 ### 卸载minconda
 
 ```
+
+conda install anaconda-clean
+anaconda-clean --yes
+
 rm -rf miniconda3/ .conda/ .continuum/ .ipython/ .jupyter/
+
 conda remove -n snake --all # 删除环境
+
 ```
 
 ### miniconda安装
@@ -93,7 +99,7 @@ pip install keras Theano tensorflow
 
 ### 测试
 
-````
+```
 import pandas as pd
 import matplotlib.pyplot as plt
 from statsmodels.tsa.seasonal import seasonal_decompose
@@ -103,4 +109,13 @@ from neupy.algorithms import GRNN as grnn
 import xgboost
 import statsmodels.api as sm
 from statsmodels.tsa.stattools import acf, pacf
+```
+
+### R语言环境安装
+
+```
+conda create -n R -c r r-essentials
+conda install -c r r-essentials
+conda update -c r r-essentials
+conda remove r-essentials
 ```
