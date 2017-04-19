@@ -20,9 +20,8 @@ conda remove -n snake --all # 删除环境
 ### Package模块安装
 
 ```
-conda install scikit-learn pandas matplotlib HDF5 h5py seaborn jupyter notebook xlrd openpyxl
-pip install imblearn graphviz arrow neupy minepy Pillow statsmodels==0.8.0rc1 pystan ipyparallel
-pip install fbprophet
+conda install scikit-learn pandas matplotlib HDF5 h5py seaborn jupyter notebook xlrd openpyxl pystan Cython
+pip install imblearn graphviz arrow neupy minepy Pillow statsmodels fbprophet
 ```
 
 ### ipyparallel
@@ -51,22 +50,27 @@ cd python-package; sudo python setup.py install
 conda create --name snake python=2
 source activate snake
 conda install scikit-learn matplotlib pandas seaborn jupyter notebook
+source deactivate snake
+```
+
+### ipyparallel install
+```
 pip install ipyparallel
 ipcluster nbextension enable # Restart
-source deactivate snake
 ```
 
 ### matplotlib中文字体问题
 
-Step1 : 查找matplotlib字体存放目录
 
+Step1 : 查找matplotlib字体存放目录
 ```
 import matplotlib as mpl
 mpl.matplotlib_fname() # 查找路径
 ```
 font.family和font.sans-serif两行前的#，并在font.sans-serif后添加中文字体SimHei, SimSun
 
-Step 2 : 将中文字体(SimHei,SimSun)复制入matplotlib字体文件夹下
+Step 2 : 将中文字体(SimHei,SimSun)复制入matplotlib字体文件夹(/Users/evan/miniconda3/lib/python3.6/site-packages/matplotlib/mpl-data/fonts/ttf/)下
+
 Step 3: 进入～／.matplotlib 文件夹中删除fontList.py3k.cache文件
 Step 4: 重启 Python
 
@@ -93,6 +97,7 @@ plt.ylabel('y坐标')
 ### 深度学习包安装
 ```
 conda create --name DL python=3
+source activate DL
 conda install pandas scikit-learn matplotlib seaborn
 pip install keras Theano tensorflow
 ```

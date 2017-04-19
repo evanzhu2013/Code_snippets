@@ -55,8 +55,8 @@ cd python-package; sudo python setup.py install
 
 ### 参考资料
 
-1. http://xgboost.readthedocs.io/en/latest/build.html#python-package-installation
-2. https://www.ibm.com/developerworks/community/blogs/jfp/entry/Installing_XGBoost_on_Mac_OSX?lang=en
+1.  http://xgboost.readthedocs.io/en/latest/build.html#python-package-installation
+2.  https://www.ibm.com/developerworks/community/blogs/jfp/entry/Installing_XGBoost_on_Mac_OSX?lang=en
 3.
 http://stackoverflow.com/questions/28970935/osx-replace-gcc-version-4-2-1-with-4-9-installed-via-homebrew/28982564#28982564
 4.
