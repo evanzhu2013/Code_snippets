@@ -1,0 +1,173 @@
+Last login: Wed Apr 19 20:01:15 on ttys000
+AI:~ evan$ rm -rf xgboost/
+AI:~ evan$ git clone --recursive https://github.com/dmlc/xgboost
+Cloning into 'xgboost'...
+remote: Counting objects: 19909, done.
+remote: Compressing objects: 100% (35/35), done.
+remote: Total 19909 (delta 6), reused 0 (delta 0), pack-reused 19863
+Receiving objects: 100% (19909/19909), 6.72 MiB | 149.00 KiB/s, done.
+Resolving deltas: 100% (11945/11945), done.
+Submodule 'dmlc-core' (https://github.com/dmlc/dmlc-core) registered for path 'dmlc-core'
+Submodule 'rabit' (https://github.com/dmlc/rabit) registered for path 'rabit'
+Cloning into '/Users/evan/xgboost/dmlc-core'...
+remote: Counting objects: 4116, done.
+remote: Compressing objects: 100% (8/8), done.
+remote: Total 4116 (delta 0), reused 0 (delta 0), pack-reused 4107
+Receiving objects: 100% (4116/4116), 925.95 KiB | 43.00 KiB/s, done.
+Resolving deltas: 100% (2437/2437), done.
+Cloning into '/Users/evan/xgboost/rabit'...
+remote: Counting objects: 3130, done.
+remote: Total 3130 (delta 0), reused 0 (delta 0), pack-reused 3130
+Receiving objects: 100% (3130/3130), 898.29 KiB | 149.00 KiB/s, done.
+Resolving deltas: 100% (2034/2034), done.
+Submodule path 'dmlc-core': checked out 'b5bec5481df86e8e6728d8bd80a61d87ef3b2cd5'
+Submodule path 'rabit': checked out 'a764d45cfb438cc9f15cf47ce586c02ff2c65d0f'
+AI:~ evan$ atom ./xgboost/make/config.mk
+AI:~ evan$ cp make/config.mk ./config.mk; make clean_all && make -j4
+cp: make/config.mk: No such file or directory
+make: *** No rule to make target `clean_all'.  Stop.
+AI:~ evan$ cp make/config.mk ./config.mk
+cp: make/config.mk: No such file or directory
+AI:~ evan$ cd xgboost; cp make/config.mk ./config.mk; make clean_all && make -j4
+rm -f -rf build build_plugin lib bin *~ */*~ */*/*~ */*/*/*~ */*.o */*/*.o */*/*/*.o xgboost
+rm -f -rf build_tests *.gcov tests/cpp/xgboost_test
+cd dmlc-core; /Library/Developer/CommandLineTools/usr/bin/make clean; cd /Users/evan/xgboost
+rm -f line_split.o recordio_split.o input_split_base.o io.o local_filesys.o data.o recordio.o config.o  libdmlc.a test/filesys_test test/dataiter_test test/iostream_test test/recordio_test test/split_read_test test/stream_read_test test/split_test test/libsvm_parser_test test/libfm_parser_test test/split_repeat_read_test test/strtonum_test test/logging_test test/parameter_test test/registry_test test/csv_parser_test test/unittest/dmlc_unittest test/unittest/unittest_any.o test/unittest/unittest_array_view.o test/unittest/unittest_config.o test/unittest/unittest_json.o test/unittest/unittest_logging.o test/unittest/unittest_main.o test/unittest/unittest_optional.o test/unittest/unittest_serializer.o test/unittest/unittest_threaditer.o *~ src/*~ src/*/*~ include/dmlc/*~ test/*~
+cd rabit; /Library/Developer/CommandLineTools/usr/bin/make clean; cd /Users/evan/xgboost
+rm -f ./allreduce_base.o ./allreduce_robust.o ./engine.o ./engine_empty.o ./engine_mock.o ./c_api.o ./engine_base.o ./engine_mpi.o lib/librabit.a lib/librabit_mpi.a lib/librabit_empty.a lib/librabit_mock.a lib/librabit_base.a  lib/librabit.so lib/librabit_mpi.so lib/librabit_mock.so lib/librabit_base.so *~ src/*~ include/*~ include/*/*~
+g++-6 -std=c++11 -Wall -Wno-unknown-pragmas -Iinclude   -Idmlc-core/include -Irabit/include -O3 -funroll-loops -msse2 -fPIC -fopenmp -MM -MT build/learner.o src/learner.cc >build/learner.d
+g++-6 -std=c++11 -Wall -Wno-unknown-pragmas -Iinclude   -Idmlc-core/include -Irabit/include -O3 -funroll-loops -msse2 -fPIC -fopenmp -MM -MT build/logging.o src/logging.cc >build/logging.d
+g++-6 -std=c++11 -Wall -Wno-unknown-pragmas -Iinclude   -Idmlc-core/include -Irabit/include -O3 -funroll-loops -msse2 -fPIC -fopenmp -MM -MT build/c_api/c_api.o src/c_api/c_api.cc >build/c_api/c_api.d
+g++-6 -std=c++11 -Wall -Wno-unknown-pragmas -Iinclude   -Idmlc-core/include -Irabit/include -O3 -funroll-loops -msse2 -fPIC -fopenmp -MM -MT build/c_api/c_api_error.o src/c_api/c_api_error.cc >build/c_api/c_api_error.d
+g++-6 -c -std=c++11 -Wall -Wno-unknown-pragmas -Iinclude   -Idmlc-core/include -Irabit/include -O3 -funroll-loops -msse2 -fPIC -fopenmp src/c_api/c_api_error.cc -o build/c_api/c_api_error.o
+g++-6 -c -std=c++11 -Wall -Wno-unknown-pragmas -Iinclude   -Idmlc-core/include -Irabit/include -O3 -funroll-loops -msse2 -fPIC -fopenmp src/logging.cc -o build/logging.o
+g++-6 -c -std=c++11 -Wall -Wno-unknown-pragmas -Iinclude   -Idmlc-core/include -Irabit/include -O3 -funroll-loops -msse2 -fPIC -fopenmp src/c_api/c_api.cc -o build/c_api/c_api.o
+g++-6 -c -std=c++11 -Wall -Wno-unknown-pragmas -Iinclude   -Idmlc-core/include -Irabit/include -O3 -funroll-loops -msse2 -fPIC -fopenmp src/learner.cc -o build/learner.o
+g++-6 -std=c++11 -Wall -Wno-unknown-pragmas -Iinclude   -Idmlc-core/include -Irabit/include -O3 -funroll-loops -msse2 -fPIC -fopenmp -MM -MT build/common/common.o src/common/common.cc >build/common/common.d
+g++-6 -std=c++11 -Wall -Wno-unknown-pragmas -Iinclude   -Idmlc-core/include -Irabit/include -O3 -funroll-loops -msse2 -fPIC -fopenmp -MM -MT build/common/hist_util.o src/common/hist_util.cc >build/common/hist_util.d
+g++-6 -c -std=c++11 -Wall -Wno-unknown-pragmas -Iinclude   -Idmlc-core/include -Irabit/include -O3 -funroll-loops -msse2 -fPIC -fopenmp src/common/common.cc -o build/common/common.o
+g++-6 -c -std=c++11 -Wall -Wno-unknown-pragmas -Iinclude   -Idmlc-core/include -Irabit/include -O3 -funroll-loops -msse2 -fPIC -fopenmp src/common/hist_util.cc -o build/common/hist_util.o
+g++-6 -std=c++11 -Wall -Wno-unknown-pragmas -Iinclude   -Idmlc-core/include -Irabit/include -O3 -funroll-loops -msse2 -fPIC -fopenmp -MM -MT build/data/data.o src/data/data.cc >build/data/data.d
+g++-6 -c -std=c++11 -Wall -Wno-unknown-pragmas -Iinclude   -Idmlc-core/include -Irabit/include -O3 -funroll-loops -msse2 -fPIC -fopenmp src/data/data.cc -o build/data/data.o
+g++-6 -std=c++11 -Wall -Wno-unknown-pragmas -Iinclude   -Idmlc-core/include -Irabit/include -O3 -funroll-loops -msse2 -fPIC -fopenmp -MM -MT build/data/simple_csr_source.o src/data/simple_csr_source.cc >build/data/simple_csr_source.d
+g++-6 -c -std=c++11 -Wall -Wno-unknown-pragmas -Iinclude   -Idmlc-core/include -Irabit/include -O3 -funroll-loops -msse2 -fPIC -fopenmp src/data/simple_csr_source.cc -o build/data/simple_csr_source.o
+g++-6 -std=c++11 -Wall -Wno-unknown-pragmas -Iinclude   -Idmlc-core/include -Irabit/include -O3 -funroll-loops -msse2 -fPIC -fopenmp -MM -MT build/data/simple_dmatrix.o src/data/simple_dmatrix.cc >build/data/simple_dmatrix.d
+g++-6 -c -std=c++11 -Wall -Wno-unknown-pragmas -Iinclude   -Idmlc-core/include -Irabit/include -O3 -funroll-loops -msse2 -fPIC -fopenmp src/data/simple_dmatrix.cc -o build/data/simple_dmatrix.o
+g++-6 -std=c++11 -Wall -Wno-unknown-pragmas -Iinclude   -Idmlc-core/include -Irabit/include -O3 -funroll-loops -msse2 -fPIC -fopenmp -MM -MT build/data/sparse_page_dmatrix.o src/data/sparse_page_dmatrix.cc >build/data/sparse_page_dmatrix.d
+g++-6 -c -std=c++11 -Wall -Wno-unknown-pragmas -Iinclude   -Idmlc-core/include -Irabit/include -O3 -funroll-loops -msse2 -fPIC -fopenmp src/data/sparse_page_dmatrix.cc -o build/data/sparse_page_dmatrix.o
+g++-6 -std=c++11 -Wall -Wno-unknown-pragmas -Iinclude   -Idmlc-core/include -Irabit/include -O3 -funroll-loops -msse2 -fPIC -fopenmp -MM -MT build/data/sparse_page_raw_format.o src/data/sparse_page_raw_format.cc >build/data/sparse_page_raw_format.d
+g++-6 -c -std=c++11 -Wall -Wno-unknown-pragmas -Iinclude   -Idmlc-core/include -Irabit/include -O3 -funroll-loops -msse2 -fPIC -fopenmp src/data/sparse_page_raw_format.cc -o build/data/sparse_page_raw_format.o
+g++-6 -std=c++11 -Wall -Wno-unknown-pragmas -Iinclude   -Idmlc-core/include -Irabit/include -O3 -funroll-loops -msse2 -fPIC -fopenmp -MM -MT build/data/sparse_page_source.o src/data/sparse_page_source.cc >build/data/sparse_page_source.d
+g++-6 -c -std=c++11 -Wall -Wno-unknown-pragmas -Iinclude   -Idmlc-core/include -Irabit/include -O3 -funroll-loops -msse2 -fPIC -fopenmp src/data/sparse_page_source.cc -o build/data/sparse_page_source.o
+g++-6 -std=c++11 -Wall -Wno-unknown-pragmas -Iinclude   -Idmlc-core/include -Irabit/include -O3 -funroll-loops -msse2 -fPIC -fopenmp -MM -MT build/data/sparse_page_writer.o src/data/sparse_page_writer.cc >build/data/sparse_page_writer.d
+g++-6 -c -std=c++11 -Wall -Wno-unknown-pragmas -Iinclude   -Idmlc-core/include -Irabit/include -O3 -funroll-loops -msse2 -fPIC -fopenmp src/data/sparse_page_writer.cc -o build/data/sparse_page_writer.o
+g++-6 -std=c++11 -Wall -Wno-unknown-pragmas -Iinclude   -Idmlc-core/include -Irabit/include -O3 -funroll-loops -msse2 -fPIC -fopenmp -MM -MT build/gbm/gblinear.o src/gbm/gblinear.cc >build/gbm/gblinear.d
+g++-6 -c -std=c++11 -Wall -Wno-unknown-pragmas -Iinclude   -Idmlc-core/include -Irabit/include -O3 -funroll-loops -msse2 -fPIC -fopenmp src/gbm/gblinear.cc -o build/gbm/gblinear.o
+g++-6 -std=c++11 -Wall -Wno-unknown-pragmas -Iinclude   -Idmlc-core/include -Irabit/include -O3 -funroll-loops -msse2 -fPIC -fopenmp -MM -MT build/gbm/gbm.o src/gbm/gbm.cc >build/gbm/gbm.d
+g++-6 -c -std=c++11 -Wall -Wno-unknown-pragmas -Iinclude   -Idmlc-core/include -Irabit/include -O3 -funroll-loops -msse2 -fPIC -fopenmp src/gbm/gbm.cc -o build/gbm/gbm.o
+g++-6 -std=c++11 -Wall -Wno-unknown-pragmas -Iinclude   -Idmlc-core/include -Irabit/include -O3 -funroll-loops -msse2 -fPIC -fopenmp -MM -MT build/gbm/gbtree.o src/gbm/gbtree.cc >build/gbm/gbtree.d
+g++-6 -std=c++11 -Wall -Wno-unknown-pragmas -Iinclude   -Idmlc-core/include -Irabit/include -O3 -funroll-loops -msse2 -fPIC -fopenmp -MM -MT build/metric/elementwise_metric.o src/metric/elementwise_metric.cc >build/metric/elementwise_metric.d
+g++-6 -c -std=c++11 -Wall -Wno-unknown-pragmas -Iinclude   -Idmlc-core/include -Irabit/include -O3 -funroll-loops -msse2 -fPIC -fopenmp src/metric/elementwise_metric.cc -o build/metric/elementwise_metric.o
+g++-6 -c -std=c++11 -Wall -Wno-unknown-pragmas -Iinclude   -Idmlc-core/include -Irabit/include -O3 -funroll-loops -msse2 -fPIC -fopenmp src/gbm/gbtree.cc -o build/gbm/gbtree.o
+g++-6 -std=c++11 -Wall -Wno-unknown-pragmas -Iinclude   -Idmlc-core/include -Irabit/include -O3 -funroll-loops -msse2 -fPIC -fopenmp -MM -MT build/metric/metric.o src/metric/metric.cc >build/metric/metric.d
+g++-6 -c -std=c++11 -Wall -Wno-unknown-pragmas -Iinclude   -Idmlc-core/include -Irabit/include -O3 -funroll-loops -msse2 -fPIC -fopenmp src/metric/metric.cc -o build/metric/metric.o
+g++-6 -std=c++11 -Wall -Wno-unknown-pragmas -Iinclude   -Idmlc-core/include -Irabit/include -O3 -funroll-loops -msse2 -fPIC -fopenmp -MM -MT build/metric/multiclass_metric.o src/metric/multiclass_metric.cc >build/metric/multiclass_metric.d
+g++-6 -c -std=c++11 -Wall -Wno-unknown-pragmas -Iinclude   -Idmlc-core/include -Irabit/include -O3 -funroll-loops -msse2 -fPIC -fopenmp src/metric/multiclass_metric.cc -o build/metric/multiclass_metric.o
+g++-6 -std=c++11 -Wall -Wno-unknown-pragmas -Iinclude   -Idmlc-core/include -Irabit/include -O3 -funroll-loops -msse2 -fPIC -fopenmp -MM -MT build/metric/rank_metric.o src/metric/rank_metric.cc >build/metric/rank_metric.d
+g++-6 -c -std=c++11 -Wall -Wno-unknown-pragmas -Iinclude   -Idmlc-core/include -Irabit/include -O3 -funroll-loops -msse2 -fPIC -fopenmp src/metric/rank_metric.cc -o build/metric/rank_metric.o
+g++-6 -std=c++11 -Wall -Wno-unknown-pragmas -Iinclude   -Idmlc-core/include -Irabit/include -O3 -funroll-loops -msse2 -fPIC -fopenmp -MM -MT build/objective/multiclass_obj.o src/objective/multiclass_obj.cc >build/objective/multiclass_obj.d
+g++-6 -c -std=c++11 -Wall -Wno-unknown-pragmas -Iinclude   -Idmlc-core/include -Irabit/include -O3 -funroll-loops -msse2 -fPIC -fopenmp src/objective/multiclass_obj.cc -o build/objective/multiclass_obj.o
+g++-6 -std=c++11 -Wall -Wno-unknown-pragmas -Iinclude   -Idmlc-core/include -Irabit/include -O3 -funroll-loops -msse2 -fPIC -fopenmp -MM -MT build/objective/objective.o src/objective/objective.cc >build/objective/objective.d
+g++-6 -c -std=c++11 -Wall -Wno-unknown-pragmas -Iinclude   -Idmlc-core/include -Irabit/include -O3 -funroll-loops -msse2 -fPIC -fopenmp src/objective/objective.cc -o build/objective/objective.o
+g++-6 -std=c++11 -Wall -Wno-unknown-pragmas -Iinclude   -Idmlc-core/include -Irabit/include -O3 -funroll-loops -msse2 -fPIC -fopenmp -MM -MT build/objective/rank_obj.o src/objective/rank_obj.cc >build/objective/rank_obj.d
+g++-6 -c -std=c++11 -Wall -Wno-unknown-pragmas -Iinclude   -Idmlc-core/include -Irabit/include -O3 -funroll-loops -msse2 -fPIC -fopenmp src/objective/rank_obj.cc -o build/objective/rank_obj.o
+g++-6 -std=c++11 -Wall -Wno-unknown-pragmas -Iinclude   -Idmlc-core/include -Irabit/include -O3 -funroll-loops -msse2 -fPIC -fopenmp -MM -MT build/objective/regression_obj.o src/objective/regression_obj.cc >build/objective/regression_obj.d
+g++-6 -c -std=c++11 -Wall -Wno-unknown-pragmas -Iinclude   -Idmlc-core/include -Irabit/include -O3 -funroll-loops -msse2 -fPIC -fopenmp src/objective/regression_obj.cc -o build/objective/regression_obj.o
+g++-6 -std=c++11 -Wall -Wno-unknown-pragmas -Iinclude   -Idmlc-core/include -Irabit/include -O3 -funroll-loops -msse2 -fPIC -fopenmp -MM -MT build/tree/tree_model.o src/tree/tree_model.cc >build/tree/tree_model.d
+g++-6 -c -std=c++11 -Wall -Wno-unknown-pragmas -Iinclude   -Idmlc-core/include -Irabit/include -O3 -funroll-loops -msse2 -fPIC -fopenmp src/tree/tree_model.cc -o build/tree/tree_model.o
+g++-6 -std=c++11 -Wall -Wno-unknown-pragmas -Iinclude   -Idmlc-core/include -Irabit/include -O3 -funroll-loops -msse2 -fPIC -fopenmp -MM -MT build/tree/tree_updater.o src/tree/tree_updater.cc >build/tree/tree_updater.d
+g++-6 -c -std=c++11 -Wall -Wno-unknown-pragmas -Iinclude   -Idmlc-core/include -Irabit/include -O3 -funroll-loops -msse2 -fPIC -fopenmp src/tree/tree_updater.cc -o build/tree/tree_updater.o
+g++-6 -std=c++11 -Wall -Wno-unknown-pragmas -Iinclude   -Idmlc-core/include -Irabit/include -O3 -funroll-loops -msse2 -fPIC -fopenmp -MM -MT build/tree/updater_colmaker.o src/tree/updater_colmaker.cc >build/tree/updater_colmaker.d
+g++-6 -c -std=c++11 -Wall -Wno-unknown-pragmas -Iinclude   -Idmlc-core/include -Irabit/include -O3 -funroll-loops -msse2 -fPIC -fopenmp src/tree/updater_colmaker.cc -o build/tree/updater_colmaker.o
+g++-6 -std=c++11 -Wall -Wno-unknown-pragmas -Iinclude   -Idmlc-core/include -Irabit/include -O3 -funroll-loops -msse2 -fPIC -fopenmp -MM -MT build/tree/updater_fast_hist.o src/tree/updater_fast_hist.cc >build/tree/updater_fast_hist.d
+g++-6 -c -std=c++11 -Wall -Wno-unknown-pragmas -Iinclude   -Idmlc-core/include -Irabit/include -O3 -funroll-loops -msse2 -fPIC -fopenmp src/tree/updater_fast_hist.cc -o build/tree/updater_fast_hist.o
+g++-6 -std=c++11 -Wall -Wno-unknown-pragmas -Iinclude   -Idmlc-core/include -Irabit/include -O3 -funroll-loops -msse2 -fPIC -fopenmp -MM -MT build/tree/updater_histmaker.o src/tree/updater_histmaker.cc >build/tree/updater_histmaker.d
+g++-6 -c -std=c++11 -Wall -Wno-unknown-pragmas -Iinclude   -Idmlc-core/include -Irabit/include -O3 -funroll-loops -msse2 -fPIC -fopenmp src/tree/updater_histmaker.cc -o build/tree/updater_histmaker.o
+g++-6 -std=c++11 -Wall -Wno-unknown-pragmas -Iinclude   -Idmlc-core/include -Irabit/include -O3 -funroll-loops -msse2 -fPIC -fopenmp -MM -MT build/tree/updater_prune.o src/tree/updater_prune.cc >build/tree/updater_prune.d
+g++-6 -c -std=c++11 -Wall -Wno-unknown-pragmas -Iinclude   -Idmlc-core/include -Irabit/include -O3 -funroll-loops -msse2 -fPIC -fopenmp src/tree/updater_prune.cc -o build/tree/updater_prune.o
+In file included from dmlc-core/include/dmlc/timer.h:21:0,
+                 from src/tree/updater_fast_hist.cc:7:
+dmlc-core/include/dmlc/./logging.h: In instantiation of 'dmlc::LogCheckError dmlc::LogCheck_GT(const X&, const Y&) [with X = long unsigned int; Y = int]':
+src/tree/updater_fast_hist.cc:298:7:   required from 'bool xgboost::tree::FastHistMaker<TStats, TConstraint>::Builder::UpdatePredictionCache(const xgboost::DMatrix*, std::vector<float>*) [with TStats = xgboost::tree::GradStats; TConstraint = xgboost::tree::NoConstraint]'
+src/tree/updater_fast_hist.cc:87:61:   required from 'bool xgboost::tree::FastHistMaker<TStats, TConstraint>::UpdatePredictionCache(const xgboost::DMatrix*, std::vector<float>*) const [with TStats = xgboost::tree::GradStats; TConstraint = xgboost::tree::NoConstraint]'
+src/tree/updater_fast_hist.cc:937:1:   required from here
+dmlc-core/include/dmlc/./logging.h:91:24: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+dmlc-core/include/dmlc/./logging.h:76:9:
+     if (x op y) return LogCheckError();                           \
+         ~~~~~~
+dmlc-core/include/dmlc/./logging.h:91:24:
+ DEFINE_CHECK_FUNC(_GT, >)
+
+dmlc-core/include/dmlc/./logging.h:76:11: note: in definition of macro 'DEFINE_CHECK_FUNC'
+     if (x op y) return LogCheckError();                           \
+           ^~
+g++-6 -std=c++11 -Wall -Wno-unknown-pragmas -Iinclude   -Idmlc-core/include -Irabit/include -O3 -funroll-loops -msse2 -fPIC -fopenmp -MM -MT build/tree/updater_refresh.o src/tree/updater_refresh.cc >build/tree/updater_refresh.d
+g++-6 -c -std=c++11 -Wall -Wno-unknown-pragmas -Iinclude   -Idmlc-core/include -Irabit/include -O3 -funroll-loops -msse2 -fPIC -fopenmp src/tree/updater_refresh.cc -o build/tree/updater_refresh.o
+g++-6 -std=c++11 -Wall -Wno-unknown-pragmas -Iinclude   -Idmlc-core/include -Irabit/include -O3 -funroll-loops -msse2 -fPIC -fopenmp -MM -MT build/tree/updater_skmaker.o src/tree/updater_skmaker.cc >build/tree/updater_skmaker.d
+g++-6 -c -std=c++11 -Wall -Wno-unknown-pragmas -Iinclude   -Idmlc-core/include -Irabit/include -O3 -funroll-loops -msse2 -fPIC -fopenmp src/tree/updater_skmaker.cc -o build/tree/updater_skmaker.o
+g++-6 -std=c++11 -Wall -Wno-unknown-pragmas -Iinclude   -Idmlc-core/include -Irabit/include -O3 -funroll-loops -msse2 -fPIC -fopenmp -MM -MT build/tree/updater_sync.o src/tree/updater_sync.cc >build/tree/updater_sync.d
+g++-6 -c -std=c++11 -Wall -Wno-unknown-pragmas -Iinclude   -Idmlc-core/include -Irabit/include -O3 -funroll-loops -msse2 -fPIC -fopenmp src/tree/updater_sync.cc -o build/tree/updater_sync.o
+cd dmlc-core; /Library/Developer/CommandLineTools/usr/bin/make libdmlc.a config=/Users/evan/xgboost/config.mk; cd /Users/evan/xgboost
+g++-6 -c -O3 -Wall -Wno-unknown-pragmas -Iinclude  -std=c++0x -fopenmp -fPIC -DDMLC_USE_HDFS=0 -DDMLC_USE_S3=0 -DDMLC_USE_AZURE=0 -msse2 -o line_split.o src/io/line_split.cc
+g++-6 -c -O3 -Wall -Wno-unknown-pragmas -Iinclude  -std=c++0x -fopenmp -fPIC -DDMLC_USE_HDFS=0 -DDMLC_USE_S3=0 -DDMLC_USE_AZURE=0 -msse2 -o recordio_split.o src/io/recordio_split.cc
+cd rabit; /Library/Developer/CommandLineTools/usr/bin/make lib/librabit.a; cd /Users/evan/xgboost
+g++-6 -c -O3 -msse2 -Wall -Wextra -Wno-unused-parameter -Wno-unknown-pragmas -std=c++0x -fPIC -o allreduce_base.o src/allreduce_base.cc
+g++-6 -c -O3 -Wall -Wno-unknown-pragmas -Iinclude  -std=c++0x -fopenmp -fPIC -DDMLC_USE_HDFS=0 -DDMLC_USE_S3=0 -DDMLC_USE_AZURE=0 -msse2 -o input_split_base.o src/io/input_split_base.cc
+g++-6 -c -O3 -msse2 -Wall -Wextra -Wno-unused-parameter -Wno-unknown-pragmas -std=c++0x -fPIC -o allreduce_robust.o src/allreduce_robust.cc
+g++-6 -std=c++11 -Wall -Wno-unknown-pragmas -Iinclude   -Idmlc-core/include -Irabit/include -O3 -funroll-loops -msse2 -fPIC -fopenmp -MM -MT build/cli_main.o src/cli_main.cc >build/cli_main.d
+g++-6 -c -std=c++11 -Wall -Wno-unknown-pragmas -Iinclude   -Idmlc-core/include -Irabit/include -O3 -funroll-loops -msse2 -fPIC -fopenmp src/cli_main.cc -o build/cli_main.o
+g++-6 -c -O3 -msse2 -Wall -Wextra -Wno-unused-parameter -Wno-unknown-pragmas -std=c++0x -fPIC -o engine.o src/engine.cc
+g++-6 -c -O3 -Wall -Wno-unknown-pragmas -Iinclude  -std=c++0x -fopenmp -fPIC -DDMLC_USE_HDFS=0 -DDMLC_USE_S3=0 -DDMLC_USE_AZURE=0 -msse2 -o io.o src/io.cc
+g++-6 -c -O3 -msse2 -Wall -Wextra -Wno-unused-parameter -Wno-unknown-pragmas -std=c++0x -fPIC -o c_api.o src/c_api.cc
+g++-6 -c -O3 -Wall -Wno-unknown-pragmas -Iinclude  -std=c++0x -fopenmp -fPIC -DDMLC_USE_HDFS=0 -DDMLC_USE_S3=0 -DDMLC_USE_AZURE=0 -msse2 -o local_filesys.o src/io/local_filesys.cc
+ar cr lib/librabit.a allreduce_base.o allreduce_robust.o engine.o c_api.o
+g++-6 -c -O3 -Wall -Wno-unknown-pragmas -Iinclude  -std=c++0x -fopenmp -fPIC -DDMLC_USE_HDFS=0 -DDMLC_USE_S3=0 -DDMLC_USE_AZURE=0 -msse2 -o data.o src/data.cc
+g++-6 -c -O3 -Wall -Wno-unknown-pragmas -Iinclude  -std=c++0x -fopenmp -fPIC -DDMLC_USE_HDFS=0 -DDMLC_USE_S3=0 -DDMLC_USE_AZURE=0 -msse2 -o recordio.o src/recordio.cc
+g++-6 -c -O3 -Wall -Wno-unknown-pragmas -Iinclude  -std=c++0x -fopenmp -fPIC -DDMLC_USE_HDFS=0 -DDMLC_USE_S3=0 -DDMLC_USE_AZURE=0 -msse2 -o config.o src/config.cc
+ar cr libdmlc.a line_split.o recordio_split.o input_split_base.o io.o local_filesys.o data.o recordio.o config.o
+g++-6 -std=c++11 -Wall -Wno-unknown-pragmas -Iinclude   -Idmlc-core/include -Irabit/include -O3 -funroll-loops -msse2 -fPIC -fopenmp -o xgboost  build/cli_main.o build/learner.o build/logging.o build/c_api/c_api.o build/c_api/c_api_error.o build/common/common.o build/common/hist_util.o build/data/data.o build/data/simple_csr_source.o build/data/simple_dmatrix.o build/data/sparse_page_dmatrix.o build/data/sparse_page_raw_format.o build/data/sparse_page_source.o build/data/sparse_page_writer.o build/gbm/gblinear.o build/gbm/gbm.o build/gbm/gbtree.o build/metric/elementwise_metric.o build/metric/metric.o build/metric/multiclass_metric.o build/metric/rank_metric.o build/objective/multiclass_obj.o build/objective/objective.o build/objective/rank_obj.o build/objective/regression_obj.o build/tree/tree_model.o build/tree/tree_updater.o build/tree/updater_colmaker.o build/tree/updater_fast_hist.o build/tree/updater_histmaker.o build/tree/updater_prune.o build/tree/updater_refresh.o build/tree/updater_skmaker.o build/tree/updater_sync.o dmlc-core/libdmlc.a rabit/lib/librabit.a  -pthread -lm  -fopenmp
+ar crv lib/libxgboost.a build/learner.o build/logging.o build/c_api/c_api.o build/c_api/c_api_error.o build/common/common.o build/common/hist_util.o build/data/data.o build/data/simple_csr_source.o build/data/simple_dmatrix.o build/data/sparse_page_dmatrix.o build/data/sparse_page_raw_format.o build/data/sparse_page_source.o build/data/sparse_page_writer.o build/gbm/gblinear.o build/gbm/gbm.o build/gbm/gbtree.o build/metric/elementwise_metric.o build/metric/metric.o build/metric/multiclass_metric.o build/metric/rank_metric.o build/objective/multiclass_obj.o build/objective/objective.o build/objective/rank_obj.o build/objective/regression_obj.o build/tree/tree_model.o build/tree/tree_updater.o build/tree/updater_colmaker.o build/tree/updater_fast_hist.o build/tree/updater_histmaker.o build/tree/updater_prune.o build/tree/updater_refresh.o build/tree/updater_skmaker.o build/tree/updater_sync.o
+g++-6 -std=c++11 -Wall -Wno-unknown-pragmas -Iinclude   -Idmlc-core/include -Irabit/include -O3 -funroll-loops -msse2 -fPIC -fopenmp -shared -o lib/libxgboost.so build/learner.o build/logging.o build/c_api/c_api.o build/c_api/c_api_error.o build/common/common.o build/common/hist_util.o build/data/data.o build/data/simple_csr_source.o build/data/simple_dmatrix.o build/data/sparse_page_dmatrix.o build/data/sparse_page_raw_format.o build/data/sparse_page_source.o build/data/sparse_page_writer.o build/gbm/gblinear.o build/gbm/gbm.o build/gbm/gbtree.o build/metric/elementwise_metric.o build/metric/metric.o build/metric/multiclass_metric.o build/metric/rank_metric.o build/objective/multiclass_obj.o build/objective/objective.o build/objective/rank_obj.o build/objective/regression_obj.o build/tree/tree_model.o build/tree/tree_updater.o build/tree/updater_colmaker.o build/tree/updater_fast_hist.o build/tree/updater_histmaker.o build/tree/updater_prune.o build/tree/updater_refresh.o build/tree/updater_skmaker.o build/tree/updater_sync.o dmlc-core/libdmlc.a rabit/lib/librabit.a -pthread -lm  -fopenmp
+a - build/learner.o
+a - build/logging.o
+a - build/c_api/c_api.o
+a - build/c_api/c_api_error.o
+a - build/common/common.o
+a - build/common/hist_util.o
+a - build/data/data.o
+a - build/data/simple_csr_source.o
+a - build/data/simple_dmatrix.o
+a - build/data/sparse_page_dmatrix.o
+a - build/data/sparse_page_raw_format.o
+a - build/data/sparse_page_source.o
+a - build/data/sparse_page_writer.o
+a - build/gbm/gblinear.o
+a - build/gbm/gbm.o
+a - build/gbm/gbtree.o
+a - build/metric/elementwise_metric.o
+a - build/metric/metric.o
+a - build/metric/multiclass_metric.o
+a - build/metric/rank_metric.o
+a - build/objective/multiclass_obj.o
+a - build/objective/objective.o
+a - build/objective/rank_obj.o
+a - build/objective/regression_obj.o
+a - build/tree/tree_model.o
+a - build/tree/tree_updater.o
+a - build/tree/updater_colmaker.o
+a - build/tree/updater_fast_hist.o
+a - build/tree/updater_histmaker.o
+a - build/tree/updater_prune.o
+a - build/tree/updater_refresh.o
+a - build/tree/updater_skmaker.o
+a - build/tree/updater_sync.o

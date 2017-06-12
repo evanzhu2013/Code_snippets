@@ -28,7 +28,7 @@ export PATH=/usr/local/bin:$PATH
 # export MPICXX= /usr/local/Cellar/gcc/6.3.0_1/bin/mpicxx
 
 cd /usr/local/bin
-ln -s  gcc-6  gcc
+ln -s  gcc-7 gcc
 ```
 
 ### XGBoost包安装
@@ -40,7 +40,7 @@ git clone --recursive https://github.com/dmlc/xgboost
 ### config文件修改
 
 ```
-atom make/config.mk
+atom ./xgboost/make/config.mk
 export CC = gcc-6
 export CXX = g++-6
 export MPICXX= mpicxx
@@ -49,7 +49,7 @@ export MPICXX= mpicxx
 ### Python包安装
 
 ```
-cd xgboost; cp make/minimum.mk ./config.mk; make clean_all && make -j4
+cd xgboost; cp make/config.mk ./config.mk; make clean_all && make -j4
 cd python-package; sudo python setup.py install
 ```
 
